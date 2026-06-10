@@ -30,10 +30,13 @@ This project is a Retrieval-Augmented Generation (RAG) system that allows users 
 
 ---
 
-## Project Structure
+## Architecture
 
 User Question -> Embedding -> ChromaDB Search -> Context -> Gemini -> Answer
 
+## Project Structure
+
+```
 Chess-Player-Search-AI
 |
 |- main.py | Getting data about chess players from chess.com API; Streamlit interface
@@ -44,34 +47,46 @@ Chess-Player-Search-AI
 |- api.py | Endpoints and Swagger UI
 |- players_info.pdf | Input for pdf_reader.py
 |- requirements.txt | All dependencies for project
+```
 
 ---
 
 ## Running the application
 1. Clone repository
+```
 git clone https://github.com/panutka1/Chess-Player-Search-AI
 cd chess-player-search
+```
 
 2. Create virtual environment
+```
 python -m venv venv
 source venv/bin/activate
+```
 
 3. Install dependencies
+```
 pip install -r requirements.txt
+```
 
 3. Create .env file with GEMINI_API_KEY
+```
 GEMINI_API_KEY=your_api_key
+```
 
 4. Run FastAPI
+```
 uvicorn api:app --reload
 
 Swagger UI runs on:
 http://127.0.0.1:8000/docs
+```
 
 5. Run Streamlit
+```
 streamlit run {path_to_your_main.py} - Chess.com API interface
 streamlit run {path_to_your_streamlit_app.py} - RAG interface
-
+```
 ---
 
 ## Future improvements
