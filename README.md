@@ -12,6 +12,7 @@ This project is a Retrieval-Augmented Generation (RAG) system that allows users 
 - Embedding of user queries
 - Semantic search in ChromaDB
 - Question answering using Gemini LLM
+- Unit testing with pytest and pytest-mock
 
 ---
 
@@ -27,6 +28,8 @@ This project is a Retrieval-Augmented Generation (RAG) system that allows users 
 - python-dotenv
 - requests
 - streamlit
+- pytest
+- pytest-mock
 
 ---
 
@@ -40,13 +43,17 @@ User Question -> Embedding -> ChromaDB Search -> Context -> Gemini -> Answer
 Chess-Player-Search-AI
 |
 |- main.py | Getting data about chess players from chess.com API; Streamlit interface
-|- ai.py | Connection with Gemini AI model
 |- rag.py | RAG pipeline (Text processing + ChromaDB)
 |- streamlit_app.py | RAG Streamlit UI
 |- pdf_reader.py | Extract text from pdf
 |- api.py | Endpoints and Swagger UI
 |- players_info.pdf | Input for pdf_reader.py
 |- requirements.txt | All dependencies for project
+|- conftest.py
+|- tests/
+    |- test_api.py
+    |- test_main.py
+    |- test_rag.py
 ```
 
 ---
@@ -55,7 +62,7 @@ Chess-Player-Search-AI
 1. Clone repository
 ```
 git clone https://github.com/panutka1/Chess-Player-Search-AI
-cd chess-player-search
+cd Chess-Player-Search-AI
 ```
 
 2. Create virtual environment
@@ -69,12 +76,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Create .env file with GEMINI_API_KEY
+4. Create .env file with GEMINI_API_KEY
 ```
 GEMINI_API_KEY=your_api_key
 ```
 
-4. Run FastAPI
+5. Run tests
+```
+pytest tests/ -v
+```
+
+6. Run FastAPI
 ```
 uvicorn api:app --reload
 
@@ -82,7 +94,7 @@ Swagger UI runs on:
 http://127.0.0.1:8000/docs
 ```
 
-5. Run Streamlit
+6. Run Streamlit
 ```
 streamlit run {path_to_your_main.py} - Chess.com API interface
 streamlit run {path_to_your_streamlit_app.py} - RAG interface

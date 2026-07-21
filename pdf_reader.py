@@ -12,4 +12,3 @@ def read_pdf(path):
         
 path = "players_info.pdf"
 readed_pdf = read_pdf(path)
-#print((readed_pdf)[0])
